@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!-- Hack or Snooze
+
+     This is the only HTML page; the applications manipulates this DOM
+     during use.
+
+     Primary authors:
+     - Michael Hueter: initial creation, 2018
+     - Elie Schoppik: refactoring using OO, 2019
+     - Joel Burton: refactored and componentized, 2020
+     - You!
+  -->
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hack or Snooze</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="user.css">
+    <link rel="stylesheet" href="stories.css">
+    <link rel="stylesheet" href="nav.css">
+  </head>
+  
+  <body>
+  
+  <!-- top navigation bar -->
+  <nav>
+    <div class="navbar-brand">
+      <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
+    </div>
+    <div class="main-nav-links hidden" style="display: block;">
+      |
+      <a class="nav-link" href="#" id="nav-submit-story">submit</a>
+      |
+      <a class="nav-link" href="#" id="nav-favorites">favorites</a>
+      |
+      <a class="nav-link" href="#" id="nav-my-stories">my&nbsp;stories</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-link" href="#" id="nav-login">login/signup</a>
+      <a class="nav-link" href="#" id="nav-user-profile"></a>
+      <a class="hidden" id="nav-logout" href="#"><small>(logout)</small></a>
+    </div>
+  </nav>
+  
+  <!-- area for stories (all stories, user stories, favorites) -->
+  <section class="stories-container container">
+    <!-- form for submitted new story -->
+    <form action="" class="hidden" id="submit-form" style="display: flex;">
+      <div>
+        <label for="create-author">author</label>
+        <input id="create-author" required="" placeholder="author name">
+      </div>
+      <div>
+        <label for="create-title">title</label>
+        <input id="create-title" required="" placeholder="story title">
+      </div>
+      <div>
+        <label for="create-url">url</label>
+        <input id="create-url" required="" type="url" placeholder="story url">
+      </div>
+      <button type="submit" id="submit-story">submit</button>
+      <hr>
+    </form>
+    
+    <!-- loading message (removed by JS after stories loaded) -->
+    
+  
+    <!-- List of all stories -->
+    <ol id="all-stories-list" class="stories-list"><li id="7b390b00-0cbe-435f-8327-427722620425">
+          <a href="https://www.ccn.com/buffett-indicator-warns-stocks-doomed-worse-crash-than-2008/" target="a_blank" class="story-link">
+            ‘Buffett Indicator’ Warns Stocks Doomed for Worse Crash Than 2008
+          </a>
+          <small class="story-hostname">(hostname.com)</small>
+          <small class="story-author">by Elie Schoppik</small>
+          <small class="story-user">posted by maurelius</small>
+        </li><li id="811057f6-9433-4261-a436-7da5ab22c6e3">
+          <a href="https://www.springboard.com/" target="a_blank" class="story-link">
+            Springboard's latest news!
+          </a>
+          <small class="story-hostname">(hostname.com)</small>
+          <small class="story-author">by Elie Schoppik</small>
+          <small class="story-user">posted by maurelius</small>
+        </li><li id="57dae916-086e-4036-9aab-82471017dddc">
+          <a href="https://github.com/spieglt/nestur" target="a_blank" class="story-link">
+            NES Emulator in Rust
+          </a>
+          <small class="story-hostname">(hostname.com)</small>
+          <small class="story-author">by Elie Schoppik</small>
+          <small class="story-user">posted by maurelius</small>
+        </li><li id="60e7a80b-a009-4275-8b5f-0ab822051c11">
+          <a href="http://catless.ncl.ac.uk/Risks/16.54.html#subj2" target="a_blank" class="story-link">
+            Ottawa Library fines people using unreliable automatic calling system (1994)
+          </a>
+          <small class="story-hostname">(hostname.com)</small>
+          <small class="story-author">by Elie Schoppik</small>
+          <small class="story-user">posted by maurelius</small>
+        </li><li id="e92dd474-f1b6-4e57-864b-173101bb1d7a">
+          <a href="https://www.google.com" target="a_blank" class="story-link">
+            Google!
+          </a>
+          <small class="story-hostname">(hostname.com)</small>
+          <small class="story-author">by Elie Schoppik</small>
+          <small class="story-user">posted by maurelius</small>
+        </li><li id="53353254-c930-438f-9cc1-d7880d3b1f53">
+          <a href="https://www.theatlantic.com/magazine/archive/2019/05/stock-value-satellite-images-investing/586009/" target="a_blank" class="story-link">
+            Stock Picks from Space (2019)
+          </a>
+          <small class="story-hostname">(hostname.com)</small>
+          <small class="story-author">by Elie Schoppik</small>
+          <small class="story-user">posted by maurelius</small>
+        </li><li id="db6ea265-77e6-4826-97fd-ae5442073d53">
+          <a href="http://blog.eladgil.com/2020/01/products-i-wish-existed-2020-edition.html" target="a_blank" class="story-link">
+            Products I wish existed
+          </a>
+          <small class="story-hostname">(hostname.com)</small>
+          <small class="story-author">by Elie Schoppik</small>
+          <small class="story-user">posted by maurelius</small>
+        </li></ol>
+  <!-- List of stories favorited by the user -->
+  <ol id="favorited-stories" class="hidden stories-list" style="display: block;"></ol>
+  <!-- List of user's stories -->
+  <ol id="my-stories" class="hidden stories-list" style="display: block;"></ol>
+  </section>
+  
+  <!-- Login and signup forms -->
+  <section class="account-forms-container container">
+  
+    <!-- Login form -->
+    <form action="#" id="login-form" class="account-form hidden" method="post">
+      <h4>Login</h4>
+      <div class="login-input">
+        <label for="login-username">username</label>
+        <input id="login-username" autocomplete="current-username">
+      </div>
+      <div class="login-input">
+        <label for="login-password">password</label>
+        <input id="login-password" type="password" autocomplete="current-password">
+      </div>
+      <button type="submit">login</button>
+      <hr>
+    </form>
+  
+    <!-- Signup form -->
+    <form action="#" id="signup-form" class="account-form hidden" method="post">
+      <h4>Create Account</h4>
+      <div class="login-input">
+        <label for="signup-name">name</label>
+        <input id="signup-name" autocapitalize="words">
+      </div>
+      <div class="login-input">
+        <label for="signup-username">username</label>
+        <input id="signup-username" autocomplete="new-username">
+      </div>
+      <div class="login-input">
+        <label for="signup-password">password</label>
+        <input id="signup-password" autocomplete="new-password" type="password">
+      </div>
+      <button type="submit">create account</button>
+    </form>
+  </section>
+  
+  <!-- Library JS & our JS -->
+  <script src="https://unpkg.com/jquery"></script>
+  <script src="https://unpkg.com/axios/dist/axios.js"></script>
+  
+  <script src="models.js"></script>
+  <script src="main.js"></script>
+  <script src="nav.js"></script>
+  <script src="user.js"></script>
+  <script src="stories.js"></script>
+  
+  
+  </body></html>
