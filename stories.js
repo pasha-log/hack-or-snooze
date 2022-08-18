@@ -23,38 +23,15 @@ async function getAndShowStoriesOnStart() {
   // </span>
 
 function generateStoryMarkup(story) {
-	// console.debug("generateStoryMarkup", story);
 
 	const hostName = story.getHostName();
 
-  
-  // if a user is logged in, show favorite/not-favorite star
+  const showTrash = Boolean((currentUser.ownStories).includes(story));
   const showStar = Boolean(currentUser);
 
 	return $(`
       <li id="${story.storyId}">
-      ${showStar ? getStarHTML(story, currentUser) : ""}
-        <a href="${story.url}" target="a_blank" class="story-link">
-          ${story.title}
-        </a>
-        <small class="story-hostname">(${hostName})</small>
-        <small class="story-author">by ${story.author}</small>
-        <small class="story-user">posted by ${story.username}</small>
-      </li>
-    `);
-}
-function generateStoryMarkupForUserStories(story) {
-	// console.debug("generateStoryMarkup", story);
-
-	const hostName = story.getHostName();
-
-  
-  // if a user is logged in, show favorite/not-favorite star
-  const showStar = Boolean(currentUser);
-
-	return $(`
-      <li id="${story.storyId}">
-      ${getDeleteBtnHTML()}
+      ${showTrash ? getDeleteBtnHTML() : ""}
       ${showStar ? getStarHTML(story, currentUser) : ""}
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
@@ -107,10 +84,10 @@ function putStoriesOnPage() {
 
 // function userSubmitsStoryForm() {
 $('#submit-story').on('click', async function() {
-	let $authorName = $('#create-author').val();
-	let $storyTitle = $('#create-title').val();
-	let $storyURL = $('#create-url').val();
-	await storyList.addStory(currentUser, { title: `${$storyTitle}`, author: `${$authorName}`, url: `${$storyURL}` });
+	let author = $('#create-author').val();
+	let title = $('#create-title').val();
+	let url = $('#create-url').val();
+	await storyList.addStory(currentUser, {title, author, url});
 	window.location.reload();
 });
 
@@ -168,7 +145,7 @@ function putOwnStoriesOnPage() {
 		$ownStories.append('<h1>No stories added by user yet!</h1>');
 	} else {
 		for (let userStory of currentUser.ownStories) {
-		  const $userStory = generateStoryMarkupForUserStories(userStory);
+		  const $userStory = generateStoryMarkup(userStory);
 			$ownStories.append($userStory);
 		}
 	}

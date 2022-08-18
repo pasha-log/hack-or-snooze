@@ -25,8 +25,8 @@ class Story {
 	// (hostname is just the name of the website that holds the article someone posted) - Pasha
 	// In stories.js is where we past the hostname into the HTML.
 	getHostName() {
-		// UNIMPLEMENTED: complete this function!
-		return 'hostname.com';
+		let url = new URL(this.url);
+		return url.hostname  
 	}
 }
 
