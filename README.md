@@ -1,6 +1,6 @@
 # A Hacker News Clone (Hack or Snooze) 
 
-<img src='./static/hack-or-snooze.png' alt=''>
+<img src='./images/hack-or-snooze.png' alt=''>
 
 ## Description 
 
