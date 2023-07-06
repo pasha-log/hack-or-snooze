@@ -1,8 +1,16 @@
 # A Hacker News Clone (Hack or Snooze) 
 
+<img src='./static/hack-or-snooze.png' alt=''>
+
 ## Description 
 
-Just a clone of the simple website where people can post articles about programming that they fin interesting. 
+A clone of the [Y Combinator Hacker News](https://news.ycombinator.com/) website where people can post articles about programming that they find interesting. Built with Object Oriented Programming methods.
+
+### Technologies Used: 
+
+* [JavaScript](https://www.javascript.com/)
+* [jQuery](https://jquery.com/)
+* [Axios](https://axios-http.com/docs/intro)
 
 ### **How to Operate:**
 
